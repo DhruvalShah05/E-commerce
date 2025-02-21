@@ -227,14 +227,9 @@ function Product_details() {
                 </div>
 
                 <button
-                  style={{ backgroundColor: "#9155fd" }}
+                  
                   className="text-white font-medium py-4 px-8 mt-5 rounded-lg hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  onMouseEnter={(e) =>
-                    (e.target.style.backgroundColor = "#4c3eeb")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.target.style.backgroundColor = "#9155fd")
-                  }
+                  
                 >
                   Add To Cart
                 </button>
