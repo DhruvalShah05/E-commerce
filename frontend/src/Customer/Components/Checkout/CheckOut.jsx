@@ -53,7 +53,7 @@ function CheckOut() {
       ) : (
         <React.Fragment>
         
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2,mb : 5 }}>
+          <Box sx={{ display: "flex", flexDirection: "row", pt: 2, }}>
             <Button
               color="inherit"
               disabled={activeStep === 0}
@@ -65,7 +65,7 @@ function CheckOut() {
 
            
           </Box>
-          <div >
+          <div className="mt-1" >
             {step == 2 ? <DeliveryAddressForm/>:<OrderSummary/>}
           </div>
         </React.Fragment>
