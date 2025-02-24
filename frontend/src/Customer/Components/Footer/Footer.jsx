@@ -10,10 +10,10 @@ import {
 function Footer() {
   return (
     <>
-      <div className="w-full">
+      <div className="w-full ">
         <Grid
           container
-          className="bg-black text-white text-center mt-10"
+          className="bg-black text-white text-center mt-10 "
           spacing={2}
           justifyContent="center"
         >

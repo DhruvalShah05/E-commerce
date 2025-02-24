@@ -5,21 +5,22 @@ import Navigation from "./Customer/Components/Navigation/Navigation"
 import Product from "./Customer/Components/Product/Product"
 import Product_details from "./Customer/Components/ProductDetails/Product_details"
 import HomePage from "./Customer/Pages/HomePage/HomePage"
-import CardsC from "./Customer/Components/Card/CardsC"
+import CardsC from "./Customer/Components/Card/Cards"
+import Order from "./Customer/Components/OrderPage/Order"
+import OrderDetails from "./Customer/Components/OrderPage/OrderDetails"
+import { Route, Routes } from "react-router-dom"
+import CusomerRoute from "./Routers/CusomerRoute"
 
 function App() {
   return (
    <>
+   <Routes>
+    <Route path="/*" element={<CusomerRoute/>} />
+   </Routes>
+
+
    
-   <Navigation/>
-   <div className="mb-4">
-    {/* <HomePage/> */}
-    {/* <Product/> */}
-    {/* <Product_details/> */}
-    {/* <CardsC/> */}
-    <CheckOut />
-    </div>
-   <Footer/>
+ 
    </>
   )
 }

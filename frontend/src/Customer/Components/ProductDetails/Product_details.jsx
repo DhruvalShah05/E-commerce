@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Radio, RadioGroup } from "@headlessui/react";
 import Rating from "@mui/material/Rating";
-import { Box, Grid2, LinearProgress } from "@mui/material";
+import { Box, Grid, LinearProgress } from "@mui/material";
 import Product_ReviewCard from "./Product_ReviewCard";
 import { mens_kurta } from "../../../../public/Data/Men/men_kurta";
 import SectionCarousrl from "../HomeCarouselCard/SectionCarousrl";
+import { useNavigate } from "react-router-dom";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -16,19 +17,19 @@ const product = {
   ],
   images: [
     {
-      src: "https://tailwindui.com/plus/img/ecommerce-images/product-page-02-secondary-product-shot.jpg",
+      src: "https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-02-secondary-product-shot.jpg",
       alt: "Two each of gray, white, and black shirts laying flat.",
     },
     {
-      src: "https://tailwindui.com/plus/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg",
+      src: "https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg",
       alt: "Model wearing plain black basic tee.",
     },
     {
-      src: "https://tailwindui.com/plus/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg",
+      src: "https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg",
       alt: "Model wearing plain gray basic tee.",
     },
     {
-      src: "https://tailwindui.com/plus/img/ecommerce-images/product-page-02-featured-product-shot.jpg",
+      src: "https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-02-featured-product-shot.jpg",
       alt: "Model wearing plain white basic tee.",
     },
   ],
@@ -66,6 +67,11 @@ function classNames(...classes) {
 
 function Product_details() {
   const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
+  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
+  const navigate = useNavigate();
+  const handleAddtoCart = () => {
+    navigate("/cart");
+  };
 
   return (
     <div className="bg-white lg:px-20">
@@ -227,11 +233,10 @@ function Product_details() {
                 </div>
 
                 <button
-                  
-                  className="text-white font-medium py-4 px-8 mt-5 rounded-lg hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  
+                  onClick={handleAddtoCart}
+                  className="bg-[#773fdf] text-white font-medium py-4 px-3 my-5 rounded-lg hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 mx-3"
                 >
-                  Add To Cart
+                  Add to Cart
                 </button>
               </form>
             </div>
@@ -266,113 +271,135 @@ function Product_details() {
           </div>
         </section>
         {/* Rating And Reviewes */}
-        <section >
-          <h1 className="font-semibold text-lg  pb-4">Rating And Reviews</h1>
-          <div className="border-t p-5  flex ">
+        <section>
+          <h1 className="font-semibold text-lg pb-4">Rating And Reviews</h1>
+          <div className="border-t p-5 flex">
             {/* Create a grid with two columns */}
-            <Grid2 container spacing={7} className="grid grid-cols-2 gap-7">
+            <Grid
+              container
+              spacing={7}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-7"
+            >
               {/* Left side for reviews */}
-              <Grid2 item xs={7} justifyItems={"start"}>
-                <div className="space-y-5 space-x-5">
+              <Grid item xs={12} sm={6}>
+                <div className="space-y-5">
                   {[1, 1, 1].map((item, index) => (
                     <Product_ReviewCard key={index} />
                   ))}
                 </div>
-              </Grid2>
+              </Grid>
 
               {/* Right side for product rating */}
-              
+              <Grid item xs={12} sm={5}>
+                <h1 className="text-xl font-semibold pb-1 text-center">
+                  Product Rating
+                </h1>
 
-    <Grid2 item xs={12} sm={6} justifyItems={"end"}  >
-      <h1 className="text-xl font-semibold pb-1 text-center">Product Rating</h1>
-      
-      <div className=" items-center space-x-3 mb-4 ">
-        <Rating value={4.6} precision={0.5} readOnly />
-        <p className="opacity-60">59856 Ratings</p>
-      </div>
+                <div className="items-center space-x-3 mb-4 text-center">
+                  <Rating value={4.6} precision={0.5} readOnly />
+                  <p className="opacity-60">59,856 Ratings</p>
+                </div>
 
-      {/* Progress Bar Section */}
-      <div className="flex justify-center items-center w-full py-4">
-        <div className="w-full max-w-3xl">
-         
-            <Box  className="flex items-center justify-center w-full mb-4">
-              <Box className="w-full sm:w-1/6 text-center">
-                <p>Excellent</p>
-              </Box>
-              <Box className="ml-4 sm:ml-10 w-full sm:w-7/12">
-                <LinearProgress
-                  sx={{ bgcolor: '#d0d0d0', borderRadius: 4, height: 7 }}
-                  variant="determinate"
-                  value={40}
-                  color="success"
-                />
-              </Box>
-            </Box>
-            <Box  className="flex items-center justify-center w-full mb-4">
-              <Box className="w-full sm:w-1/6 text-center">
-                <p>Very Good</p>
-              </Box>
-              <Box className="ml-4 sm:ml-10 w-full sm:w-7/12">
-                <LinearProgress
-                  sx={{ bgcolor: '#d0d0d0', borderRadius: 4, height: 7 }}
-                  variant="determinate"
-                  value={30}
-                  color="success"
-                />
-              </Box>
-            </Box>
-            <Box  className="flex items-center justify-center w-full mb-4">
-              <Box className="w-full sm:w-1/6 text-center">
-                <p>Good</p>
-              </Box>
-              <Box className="ml-4 sm:ml-10 w-full sm:w-7/12">
-                <LinearProgress
-                  sx={{ bgcolor: '#d0d0d0', borderRadius: 4, height: 7,color:'yellow' }}
-                  variant="determinate"
-                  value={30}
-                />
-              </Box>
-            </Box>
-            <Box  className="flex items-center justify-center w-full mb-4">
-              <Box className="w-full sm:w-1/6 text-center">
-                <p>Avarage</p>
-              </Box>
-              <Box className="ml-4 sm:ml-10 w-full sm:w-7/12">
-                <LinearProgress
-                  sx={{ bgcolor: '#d0d0d0', borderRadius: 4, height: 7 }}
-                  variant="determinate"
-                  value={20}
-                  color="warning"
-                />
-              </Box>
-            </Box>
-            <Box  className="flex items-center justify-center w-full mb-4">
-              <Box className="w-full sm:w-1/6 text-center">
-                <p>Poor</p>
-              </Box>
-              <Box className="ml-4 sm:ml-10 w-full sm:w-7/12">
-                <LinearProgress
-                  sx={{ bgcolor: '#d0d0d0', borderRadius: 4, height: 7 }}
-                  variant="determinate"
-                  value={10}
-                  color="error"
-                />
-              </Box>
-            </Box>
-       
-        </div>
-      </div>
-    </Grid2>
-
-
-            </Grid2>
+                {/* Progress Bar Section */}
+                <div className="flex justify-center items-center w-full py-4">
+                  <div className="w-full max-w-3xl">
+                    <Box className="flex items-center justify-center w-full mb-4">
+                      <Box className="w-full sm:w-1/6 text-center">
+                        <p>Excellent</p>
+                      </Box>
+                      <Box className="ml-4 sm:ml-10 w-full sm:w-7/12">
+                        <LinearProgress
+                          sx={{
+                            bgcolor: "#d0d0d0",
+                            borderRadius: 4,
+                            height: 7,
+                          }}
+                          variant="determinate"
+                          value={40}
+                          color="success"
+                        />
+                      </Box>
+                    </Box>
+                    <Box className="flex items-center justify-center w-full mb-4">
+                      <Box className="w-full sm:w-1/6 text-center">
+                        <p>Very Good</p>
+                      </Box>
+                      <Box className="ml-4 sm:ml-10 w-full sm:w-7/12">
+                        <LinearProgress
+                          sx={{
+                            bgcolor: "#d0d0d0",
+                            borderRadius: 4,
+                            height: 7,
+                          }}
+                          variant="determinate"
+                          value={30}
+                          color="success"
+                        />
+                      </Box>
+                    </Box>
+                    <Box className="flex items-center justify-center w-full mb-4">
+                      <Box className="w-full sm:w-1/6 text-center">
+                        <p>Good</p>
+                      </Box>
+                      <Box className="ml-4 sm:ml-10 w-full sm:w-7/12">
+                        <LinearProgress
+                          sx={{
+                            bgcolor: "#d0d0d0",
+                            borderRadius: 4,
+                            height: 7,
+                            color: "yellow",
+                          }}
+                          variant="determinate"
+                          value={30}
+                        />
+                      </Box>
+                    </Box>
+                    <Box className="flex items-center justify-center w-full mb-4">
+                      <Box className="w-full sm:w-1/6 text-center">
+                        <p>Average</p>
+                      </Box>
+                      <Box className="ml-4 sm:ml-10 w-full sm:w-7/12">
+                        <LinearProgress
+                          sx={{
+                            bgcolor: "#d0d0d0",
+                            borderRadius: 4,
+                            height: 7,
+                          }}
+                          variant="determinate"
+                          value={20}
+                          color="warning"
+                        />
+                      </Box>
+                    </Box>
+                    <Box className="flex items-center justify-center w-full mb-4">
+                      <Box className="w-full sm:w-1/6 text-center">
+                        <p>Poor</p>
+                      </Box>
+                      <Box className="ml-4 sm:ml-10 w-full sm:w-7/12">
+                        <LinearProgress
+                          sx={{
+                            bgcolor: "#d0d0d0",
+                            borderRadius: 4,
+                            height: 7,
+                          }}
+                          variant="determinate"
+                          value={10}
+                          color="error"
+                        />
+                      </Box>
+                    </Box>
+                  </div>
+                </div>
+              </Grid>
+            </Grid>
           </div>
         </section>
-        <section>
-          <h1 >Similar Products</h1>
-                  <div className="">
-                  <SectionCarousrl data={mens_kurta} sectionName={"Men's Kurta"} />
-                  </div>
+
+        <section className="space-y-2">
+          <h1 className="font-semibold text-lg">Similar Products</h1>
+          <div className="text-lg">
+            <SectionCarousrl data={mens_kurta}  />
+          </div>
         </section>
       </div>
     </div>

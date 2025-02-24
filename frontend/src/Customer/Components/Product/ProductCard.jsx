@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
 function ProductCard({ product }) {
+  const navigate = useNavigate();
   return (
-    <div className="w-[14rem] m-3 transition-all cursor-pointer hover:shadow-[0px_54px_55px_rgba(0,0,0,0.25),_0px_-12px_30px_rgba(0,0,0,0.12),_0px_4px_6px_rgba(0,0,0,0.12),_0px_12px_13px_rgba(0,0,0,0.17),_0px_-3px_5px_rgba(0,0,0,0.09)]">
+    <div onClick={()=>navigate(`/product/${5}`)} className="w-[14rem] m-3 transition-all cursor-pointer hover:shadow-[0px_54px_55px_rgba(0,0,0,0.25),_0px_-12px_30px_rgba(0,0,0,0.12),_0px_4px_6px_rgba(0,0,0,0.12),_0px_12px_13px_rgba(0,0,0,0.17),_0px_-3px_5px_rgba(0,0,0,0.09)]">
       <div className="h-[20rem]">
         <img
           className="h-full w-full object-cover object-left-top"

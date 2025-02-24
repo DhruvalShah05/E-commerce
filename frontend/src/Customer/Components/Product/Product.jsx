@@ -13,7 +13,7 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/react";
-import FilterListIcon from '@mui/icons-material/FilterList';
+import FilterListIcon from "@mui/icons-material/FilterList";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
@@ -37,41 +37,37 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
 
-  
-  const handleFilter=(value,sectionId)=>{
-    const searchParamas = new URLSearchParams(location.search)
+  const handleFilter = (value, sectionId) => {
+    const searchParamas = new URLSearchParams(location.search);
     let filterValue = searchParamas.getAll(sectionId);
 
-    if(filterValue.length >0 && filterValue[0].split(",").includes(value)    ){
+    if (filterValue.length > 0 && filterValue[0].split(",").includes(value)) {
       filterValue = filterValue[0].split(",").filter((item) => item !== value);
-    
-    if(filterValue.length === 0  ){
-     searchParamas.delete(sectionId);
-    }
-  }
-  else{
-    filterValue.push(value)
-  }
-  if(filterValue.length > 0){
-    searchParamas.set(sectionId, filterValue.join(","));
-    
-  }
-  const query = searchParamas.toString();
-  navigate({search:`?${query}`});
-  }
-  const handleSingalFilter =(e,sectionId) =>{
-    const searchParamas = new URLSearchParams(location.search);
-   searchParamas.set(sectionId,e.target.value);
-   const query = searchParamas.toString();
-  navigate({search:`?${query}`});
 
-  }
+      if (filterValue.length === 0) {
+        searchParamas.delete(sectionId);
+      }
+    } else {
+      filterValue.push(value);
+    }
+    if (filterValue.length > 0) {
+      searchParamas.set(sectionId, filterValue.join(","));
+    }
+    const query = searchParamas.toString();
+    navigate({ search: `?${query}` });
+  };
+  const handleSingalFilter = (e, sectionId) => {
+    const searchParamas = new URLSearchParams(location.search);
+    searchParamas.set(sectionId, e.target.value);
+    const query = searchParamas.toString();
+    navigate({ search: `?${query}` });
+  };
   return (
     <div className="bg-white">
       <div>
@@ -135,7 +131,9 @@ export default function Example() {
                             <div className="flex h-5 shrink-0 items-center">
                               <div className="group grid size-4 grid-cols-1">
                                 <input
-                                  onChange={()=>handleFilter(option.value,section.id)}
+                                  onChange={() =>
+                                    handleFilter(option.value, section.id)
+                                  }
                                   defaultValue={option.value}
                                   id={`filter-mobile-${section.id}-${optionIdx}`}
                                   name={`${section.id}[]`}
@@ -208,7 +206,9 @@ export default function Example() {
                               <div className="group grid size-4 grid-cols-1">
                                 {/* Ensure radio button is initially unselected and round */}
                                 <input
-                                onChange={(e)=>handleSingalFilter(e,section.id)}
+                                  onChange={(e) =>
+                                    handleSingalFilter(e, section.id)
+                                  }
                                   id={`filter-mobile-${section.id}-${optionIdx}`}
                                   name={`${section.id}[]`} // This groups the radio buttons together
                                   type="radio" // Radio button type
@@ -254,7 +254,7 @@ export default function Example() {
         </Dialog>
 
         <main className="mx-auto  px-4 sm:px-6 lg:px-10">
-          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
+          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-3">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
               New Arrivals
             </h1>
@@ -266,7 +266,7 @@ export default function Example() {
                     Sort
                     <ChevronDownIcon
                       aria-hidden="true"
-                      className="-mr-1 ml-1 size-5 shrink-0 text-gray-400 group-hover:text-gray-500"
+                      className="mr-1 ml-1 size-5 shrink-0 text-gray-400 group-hover:text-gray-500"
                     />
                   </MenuButton>
                 </div>
@@ -355,7 +355,9 @@ export default function Example() {
                               <div className="flex h-5 shrink-0 items-center">
                                 <div className="group grid size-4 grid-cols-1">
                                   <input
-                                  onChange={()=>handleFilter(option.value,section.id)}
+                                    onChange={() =>
+                                      handleFilter(option.value, section.id)
+                                    }
                                     defaultValue={option.value}
                                     defaultChecked={option.checked}
                                     id={`filter-${section.id}-${optionIdx}`}
@@ -428,8 +430,10 @@ export default function Example() {
                                 <div className="group grid size-4 grid-cols-1">
                                   {/* Changed type to radio */}
                                   <input
-                                   onChange={(e)=>handleSingalFilter(e,section.id)}
-                                   defaultValue={option.value}
+                                    onChange={(e) =>
+                                      handleSingalFilter(e, section.id)
+                                    }
+                                    defaultValue={option.value}
                                     id={`filter-${section.id}-${optionIdx}`}
                                     name={`${section.id}[]`} // Grouping radio buttons with the same name
                                     type="radio" // Changed from checkbox to radio
